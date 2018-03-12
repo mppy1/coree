@@ -41,6 +41,7 @@ public class SplashActivity extends AppCompatActivity implements SplashADListene
   private static final String SKIP_TEXT = "点击跳过 %d";
   
   public boolean canJump = false;
+  private boolean canFinish = false;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -156,7 +157,12 @@ public class SplashActivity extends AppCompatActivity implements SplashADListene
   @Override
   public void onADTick(long millisUntilFinished) {
     Log.i("AD_DEMO", "SplashADTick " + millisUntilFinished + "ms");
-    skipView.setText(String.format(SKIP_TEXT, Math.round(millisUntilFinished / 1000f)));
+//    skipView.setText(String.format(SKIP_TEXT, Math.round(millisUntilFinished / 1000f)));
+    if (!canFinish) {
+      canFinish = true;
+      this.startActivity(new Intent(this, MVPTestActivity.class));
+      this.finish();
+    }
   }
 
   @Override
