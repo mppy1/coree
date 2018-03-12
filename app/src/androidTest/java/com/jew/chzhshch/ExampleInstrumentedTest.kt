@@ -1,4 +1,4 @@
-package com.jew.coree
+package com.jew.chzhshch
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.jew.coree", appContext.packageName)
+        assertEquals("com.jew.chzhshch", appContext.packageName)
     }
 }

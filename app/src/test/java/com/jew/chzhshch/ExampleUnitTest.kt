@@ -1,4 +1,4 @@
-package com.jew.coree
+package com.jew.chzhshch
 
 import org.junit.Test
 
