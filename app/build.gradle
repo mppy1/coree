@@ -28,8 +28,8 @@ android {
         applicationId "com.jew.chzhshch"
         minSdkVersion 15
         targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        versionCode 329
+        versionName '3.2.9'
         flavorDimensions "versionCode"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
@@ -118,7 +118,7 @@ android {
 
             if (outputFile != null && outputFile.name.endsWith('.apk')) {
                 // 输出apk名称为：great_v[版本号]_[时间]_[渠道].apk
-                def fileName = "corec_v${defaultConfig.versionName}_${releaseTime()}_${productFlavors[0].name}.apk"
+                def fileName = "coree_v${defaultConfig.versionName}_${releaseTime()}_${productFlavors[0].name}.apk"
                 outputFileName = fileName
 //                output.outputFile = new File(outputFile.parent, fileName)
 
