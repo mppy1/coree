@@ -1,0 +1,43 @@
+apply plugin: 'com.android.library'
+
+version = "1.1.3"
+
+android {
+    compileSdkVersion 27
+
+    // compileSdkVersion 24
+    // buildToolsVersion '24'
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 27
+        //  targetSdkVersion 24
+        versionCode 3
+        versionName version
+
+        vectorDrawables.useSupportLibrary = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    resourcePrefix "gallery_"
+}
+
+
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
+    api 'com.github.yalantis:ucrop:2.2.2'
+    //noinspection GradleCompatible
+    api 'com.android.support:exifinterface:27.1.1'
+
+    compileOnly 'com.squareup.picasso:picasso:2.5.2'
+    compileOnly 'com.facebook.fresco:fresco:1.3.0'
+    compileOnly 'com.facebook.fresco:animated-gif:1.3.0'
+    compileOnly 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+
+    api project(':CoreLibs')
+}
