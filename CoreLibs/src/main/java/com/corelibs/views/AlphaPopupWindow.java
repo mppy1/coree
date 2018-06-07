@@ -1,6 +1,8 @@
 package com.corelibs.views;
 
 import android.app.Activity;
+import android.graphics.Rect;
+import android.os.Build;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
@@ -12,6 +14,7 @@ import android.widget.PopupWindow;
 public class AlphaPopupWindow extends PopupWindow {
 
     private Activity context;
+    private float alpha = 0.7f;
 
     public AlphaPopupWindow(Activity context) {
         this.context = context;
@@ -24,15 +27,21 @@ public class AlphaPopupWindow extends PopupWindow {
     }
 
     @Override
-    public void showAsDropDown(View anchor, int xOff, int yOff, int gravity) {
-        super.showAsDropDown(anchor, xOff, yOff, gravity);
-        setWindowAlpha(0.7f);
+    public void showAsDropDown(View anchor) {
+        if (Build.VERSION.SDK_INT >= 24) {
+            Rect rect = new Rect();
+            anchor.getGlobalVisibleRect(rect);
+            int h = anchor.getResources().getDisplayMetrics().heightPixels - rect.bottom;
+            setHeight(h);
+        }
+        super.showAsDropDown(anchor);
+        setWindowAlpha(alpha);
     }
 
     @Override
     public void showAtLocation(View parent, int gravity, int x, int y) {
         super.showAtLocation(parent, gravity, x, y);
-        setWindowAlpha(0.7f);
+        setWindowAlpha(alpha);
     }
 
     @Override

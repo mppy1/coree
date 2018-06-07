@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
@@ -15,12 +14,12 @@ import android.widget.TextView;
 import com.corelibs.common.AppManager;
 import com.corelibs.utils.ToastMgr;
 import com.corelibs.views.LoadingDialog;
-import com.trello.rxlifecycle.ActivityEvent;
-import com.trello.rxlifecycle.FragmentEvent;
-import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
+import com.trello.rxlifecycle2.android.ActivityEvent;
+import com.trello.rxlifecycle2.android.FragmentEvent;
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import butterknife.ButterKnife;
-import rx.Observable;
+import io.reactivex.ObservableTransformer;
 
 /**
  * Activity基类, 继承自此类的Activity需要实现{@link #getLayoutId},{@link #init}
@@ -41,9 +40,10 @@ public abstract class BaseActivity<V extends BaseView, T extends BasePresenter<V
     private LoadingDialog loadingDialog;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getLayoutId());
+        int layoutId = getLayoutId();
+        setContentView(layoutId);
         AppManager.getAppManager().addActivity(this);
         presenter = createPresenter();
         if (presenter != null) presenter.attachView((V) this);
@@ -51,7 +51,7 @@ public abstract class BaseActivity<V extends BaseView, T extends BasePresenter<V
         ButterKnife.bind(this);
         loadingDialog = new LoadingDialog(this);
 
-//        setTranslucentStatusBar();
+        setTranslucentStatusBar();
         init(savedInstanceState);
         if (presenter != null) presenter.onStart();
     }
@@ -148,12 +148,12 @@ public abstract class BaseActivity<V extends BaseView, T extends BasePresenter<V
 
     @Override
     public void showLoading() {
-        loadingDialog.show();
+        if (loadingDialog != null) loadingDialog.show();
     }
 
     @Override
     public void hideLoading() {
-        loadingDialog.dismiss();
+        if (loadingDialog != null) loadingDialog.dismiss();
     }
 
     @Override
@@ -173,31 +173,35 @@ public abstract class BaseActivity<V extends BaseView, T extends BasePresenter<V
     public void showEmptyHint() {}
 
     @Override
-    public <T> Observable.Transformer<T, T> bind() {
+    public <T> ObservableTransformer<T, T> bind() {
         return bindToLifecycle();
     }
 
     @Override
-    public <T> Observable.Transformer<T, T> bindUntil(ActivityEvent event) {
+    public <T> ObservableTransformer<T, T> bindUntil(ActivityEvent event) {
         return bindUntilEvent(event);
     }
 
     @Override
-    public <T> Observable.Transformer<T, T> bindUntil(FragmentEvent event) {
+    public <T> ObservableTransformer<T, T> bindUntil(FragmentEvent event) {
         return null;
+    }
+
+    @Override
+    public void finishView() {
+        finish();
     }
 
     /**
      * 设置全屏模式，并将状态栏设置为透明，支持4.4及以上系统
      */
-    protected void setTranslucentStatusBar() {
+    public void setTranslucentStatusBar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             getWindow().setStatusBarColor(Color.TRANSPARENT);
 
             setFullScreen();
@@ -207,7 +211,7 @@ public abstract class BaseActivity<V extends BaseView, T extends BasePresenter<V
     /**
      * 设置状态栏为浅色模式，状态栏上的图标都会变为深色。仅支持6.0及以上系统
      */
-    protected void setLightStatusBar() {
+    public void setLightStatusBar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
         }
@@ -216,7 +220,7 @@ public abstract class BaseActivity<V extends BaseView, T extends BasePresenter<V
     /**
      * 设置全屏模式
      */
-    protected void setFullScreen() {
+    public void setFullScreen() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         }
@@ -225,7 +229,7 @@ public abstract class BaseActivity<V extends BaseView, T extends BasePresenter<V
     /**
      * 设置系统状态颜色，仅支持6.0及以上系统
      */
-    protected void setStatusBarColor(int color) {
+    public void setStatusBarColor(int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getWindow().setStatusBarColor(color);
         }

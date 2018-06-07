@@ -28,10 +28,11 @@ import java.lang.reflect.Type;
 import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -55,6 +56,8 @@ public class ApiFactory {
     private static ApiFactory factory;
     private HashMap<String, Retrofit> retrofitMap = new HashMap<>();
     private static final boolean IS_ADAPT_GSON_OBJECT_STRING_EXCEPTION = false;
+
+    private int timeout = 30;
 
     public static ApiFactory getFactory() {
         if (factory == null) {
@@ -104,6 +107,14 @@ public class ApiFactory {
     public <T> T create(String key, Class<T> clz) {
         checkRetrofitMap();
         return retrofitMap.get(key).create(clz);
+    }
+
+    /**
+     * 设置OkHttp连接超时时间，默认30秒，请在{@link #add(String)}或{@link #add(String, String)}之前设置
+     * @param seconds 秒
+     */
+    public void setTimeout(int seconds) {
+        timeout = seconds;
     }
 
     private void checkRetrofitMap() {
@@ -207,10 +218,13 @@ public class ApiFactory {
         }
 
         builder.baseUrl(baseUrl)
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gsonBuilder.create()));
 
         OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder();
+
+        clientBuilder.readTimeout(timeout, TimeUnit.SECONDS)
+                .writeTimeout(timeout, TimeUnit.SECONDS).connectTimeout(timeout, TimeUnit.SECONDS);
 
         if (Configuration.isShowNetworkParams()) {
             clientBuilder.addInterceptor(new HttpLoggingInterceptor());
