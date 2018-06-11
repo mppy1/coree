@@ -24,16 +24,6 @@ public class App extends MultiDexApplication
 
     public static App getApp()
     {
-        if (app == null)
-        {
-            synchronized (App.class)
-            {
-                if (app == null)
-                {
-                    app = new App();
-                }
-            }
-        }
         return app;
     }
 

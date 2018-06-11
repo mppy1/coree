@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 configurations.all {
@@ -9,7 +8,7 @@ configurations.all {
         def requested = details.requested
         if (requested.group == 'com.android.support') {
             if (!requested.name.startsWith("multidex")) {
-                details.useVersion '26.1.0'
+                details.useVersion '27.1.1'
             }
         }
     }
@@ -28,8 +27,8 @@ android {
         applicationId "com.jew.chzhshch"
         minSdkVersion 15
         targetSdkVersion 27
-        versionCode 329
-        versionName '3.2.9'
+        versionCode 332
+        versionName '3.3.2'
         flavorDimensions "versionCode"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
@@ -120,13 +119,17 @@ android {
 }
 
 dependencies {
-    implementation project(':CoreLibs')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    implementation project(':CoreLibs')
+    implementation project(':RxGalleryFinal')
+
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    kapt 'com.jakewharton:butterknife-compiler:8.8.1'
     implementation 'com.android.support:design:27.1.1'
 }
 

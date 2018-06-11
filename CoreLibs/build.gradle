@@ -22,6 +22,9 @@ repositories {
 
 apply plugin: 'com.android.library'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 27
@@ -57,7 +60,7 @@ dependencies {
     api "com.github.bumptech.glide:okhttp3-integration:4.7.1"
 
     api 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    kapt 'com.jakewharton:butterknife-compiler:8.8.1'
 
     api 'io.reactivex.rxjava2:rxjava:2.1.12'
     api 'io.reactivex.rxjava2:rxandroid:2.0.1'
@@ -67,7 +70,7 @@ dependencies {
 
     api 'com.squareup.retrofit2:retrofit:2.4.0'
     api 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
-    api 'com.squareup.retrofit2:converter-gson:2.2.0'
+    api 'com.squareup.retrofit2:converter-gson:2.4.0'
     api 'com.squareup.okhttp3:okhttp:3.10.0'
 
     api('com.github.afollestad.material-dialogs:core:0.9.6.0@aar') {
