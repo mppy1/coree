@@ -547,3 +547,7 @@ public static final int *;
 
 #沉浸式规则
  -keep class com.gyf.barlibrary.* {*;}
+
+ #Lambda
+ -dontwarn java.lang.invoke.*
+ -dontwarn **$$Lambda$*
