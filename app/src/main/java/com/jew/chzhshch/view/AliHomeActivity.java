@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.view.View;
-import android.widget.RelativeLayout;
 
 import com.corelibs.base.BaseActivity;
 import com.gyf.barlibrary.ImmersionBar;
@@ -28,7 +27,7 @@ public class AliHomeActivity extends BaseActivity<AliHomeView, AliHomePresenter>
     @BindView(R.id.include_toolbar_search)
     View includeToolbarSearch;
     @BindView(R.id.include_toolbar_small)
-    View includeToolbarSmall;
+    View includeToolbarSmall;  //include 自动导入不能识别类型，需要手动修改
 
     private int mMaskColor;
 
