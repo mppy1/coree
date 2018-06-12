@@ -20,8 +20,16 @@
         android:text="interstitial test!" />
 
     <TextView
+        android:id="@+id/tv_ali_home"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="ali home test!" />
+
+    <TextView
+        android:id="@+id/tv_test"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:gravity="center"
         android:text="mvp test!" />
 </LinearLayout>

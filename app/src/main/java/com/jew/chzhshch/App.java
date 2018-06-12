@@ -18,24 +18,20 @@ import com.jew.chzhshch.constants.Urls;
  * Created by Administrator on 2018/3/2/002.
  */
 
-public class App extends MultiDexApplication
-{
+public class App extends MultiDexApplication {
     private static App app;
 
-    public static App getApp()
-    {
+    public static App getApp() {
         return app;
     }
 
-    protected void attachBaseContext(Context base)
-    {
+    protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
     }
 
     @Override
-    public void onCreate()
-    {
+    public void onCreate() {
         super.onCreate();
         app = this;
         GlobalExceptionHandler.getInstance().init(this, getResources().getString(R.string.app_name)); //初始化全局异常捕获

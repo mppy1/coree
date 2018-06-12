@@ -16,71 +16,71 @@ import com.qq.e.comm.util.AdError;
 
 public class BannerActivity extends AppCompatActivity implements OnClickListener {
 
-  ViewGroup bannerContainer;
-  BannerView bv;
+    ViewGroup bannerContainer;
+    BannerView bv;
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_banner);
-    bannerContainer = (ViewGroup) this.findViewById(R.id.bannerContainer);
-    this.findViewById(R.id.refreshBanner).setOnClickListener(this);
-    this.findViewById(R.id.closeBanner).setOnClickListener(this);
-    this.initBanner();
-    this.bv.loadAD();
-  }
-
-  private void initBanner() {
-    this.bv = new BannerView(this, ADSize.BANNER, Constants.APPID, Constants.BannerPosID);
-    // 注意：如果开发者的banner不是始终展示在屏幕中的话，请关闭自动刷新，否则将导致曝光率过低。
-    // 并且应该自行处理：当banner广告区域出现在屏幕后，再手动loadAD。
-    bv.setRefresh(30); 
-    bv.setADListener(new AbstractBannerADListener() {
-
-      @Override
-      public void onNoAD(AdError error) {
-        Log.i(
-            "AD_DEMO",
-            String.format("Banner onNoAD，eCode = %d, eMsg = %s", error.getErrorCode(),
-                error.getErrorMsg()));
-      }
-
-      @Override
-      public void onADReceiv() {
-        Log.i("AD_DEMO", "ONBannerReceive");
-      }
-    });
-    bannerContainer.addView(bv);
-  }
-
-  @Override
-  public void onClick(View v) {
-    switch (v.getId()) {
-      case R.id.refreshBanner:
-        doRefreshBanner();
-        break;
-      case R.id.closeBanner:
-        doCloseBanner();
-        break;
-      default:
-        break;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_banner);
+        bannerContainer = (ViewGroup) this.findViewById(R.id.bannerContainer);
+        this.findViewById(R.id.refreshBanner).setOnClickListener(this);
+        this.findViewById(R.id.closeBanner).setOnClickListener(this);
+        this.initBanner();
+        this.bv.loadAD();
     }
-  }
 
-  private void doRefreshBanner() {
-    if (bv == null) {
-      initBanner();
-    }
-    bv.loadAD();
-  }
+    private void initBanner() {
+        this.bv = new BannerView(this, ADSize.BANNER, Constants.APPID, Constants.BannerPosID);
+        // 注意：如果开发者的banner不是始终展示在屏幕中的话，请关闭自动刷新，否则将导致曝光率过低。
+        // 并且应该自行处理：当banner广告区域出现在屏幕后，再手动loadAD。
+        bv.setRefresh(30);
+        bv.setADListener(new AbstractBannerADListener() {
 
-  private void doCloseBanner() {
-    bannerContainer.removeAllViews();
-    if (bv != null) {
-      bv.destroy();
-      bv = null;
+            @Override
+            public void onNoAD(AdError error) {
+                Log.i(
+                        "AD_DEMO",
+                        String.format("Banner onNoAD，eCode = %d, eMsg = %s", error.getErrorCode(),
+                                error.getErrorMsg()));
+            }
+
+            @Override
+            public void onADReceiv() {
+                Log.i("AD_DEMO", "ONBannerReceive");
+            }
+        });
+        bannerContainer.addView(bv);
     }
-  }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.refreshBanner:
+                doRefreshBanner();
+                break;
+            case R.id.closeBanner:
+                doCloseBanner();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void doRefreshBanner() {
+        if (bv == null) {
+            initBanner();
+        }
+        bv.loadAD();
+    }
+
+    private void doCloseBanner() {
+        bannerContainer.removeAllViews();
+        if (bv != null) {
+            bv.destroy();
+            bv = null;
+        }
+    }
 
 
 }

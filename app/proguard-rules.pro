@@ -544,3 +544,6 @@ public static final int *;
 -keep class * implements com.luojilab.component.componentlib.router.ISyringe {*;}
 -keep class * implements com.luojilab.component.componentlib.applicationlike.IApplicationLike {*;}
 #DDComponent
+
+#沉浸式规则
+ -keep class com.gyf.barlibrary.* {*;}

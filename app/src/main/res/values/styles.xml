@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     <!-- 消除应用启动闪黑屏 -->
-    <style name="AppTheme.splash"  parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme.splash" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowFullscreen">true</item>
