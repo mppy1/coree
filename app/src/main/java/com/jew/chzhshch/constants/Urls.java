@@ -7,5 +7,5 @@ package com.jew.chzhshch.constants;
 
 public class Urls {
     public static final String ROOT_API = "http://www.wozvr.com/";
-    public static final String ROOT_API2 = "http://www.ledbang.com/";
+    public static final String ROOT_LED = "http://www.ledbang.com/";
 }

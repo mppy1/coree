@@ -12,6 +12,11 @@ import com.corelibs.exception.GlobalExceptionHandler;
 import com.corelibs.utils.PreferencesHelper;
 import com.corelibs.utils.ToastMgr;
 import com.jew.chzhshch.constants.Urls;
+import com.liulishuo.filedownloader.FileDownloader;
+import com.liulishuo.filedownloader.connection.FileDownloadUrlConnection;
+import com.liulishuo.filedownloader.util.FileDownloadLog;
+
+import java.net.Proxy;
 
 /**
  * 全局APP
@@ -38,7 +43,18 @@ public class App extends MultiDexApplication {
         ToastMgr.init(getApplicationContext()); //初始化Toast管理器
         Configuration.enableLoggingNetworkParams(); //打开网络请求Log打印，需要在初始化Retrofit接口工厂之前调用
         ApiFactory.getFactory().add(Urls.ROOT_API); //初始化Retrofit接口工厂
+        ApiFactory.getFactory().add(Urls.ROOT_LED,Urls.ROOT_LED); //初始化Retrofit接口工厂
         PreferencesHelper.init(getApplicationContext()); //初始化SharedPreferences工具类
+
+        FileDownloader.setupOnApplicationOnCreate(this)
+                .connectionCreator(new FileDownloadUrlConnection
+                        .Creator(new FileDownloadUrlConnection.Configuration()
+                        .connectTimeout(15_000) // set connection timeout.
+                        .readTimeout(15_000) // set read timeout.
+                        .proxy(Proxy.NO_PROXY)
+                ))
+                .commit();
+        FileDownloadLog.NEED_LOG = true;
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             // android 7.0系统解决拍照报exposed beyond app through ClipData.Item.getUri()
