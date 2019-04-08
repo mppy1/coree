@@ -1,4 +1,4 @@
-package com.jew.chzhshch.constants;
+package com.jew.coree.constants;
 
 public class Constants {
     public static final String APPID = "1101090090";

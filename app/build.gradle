@@ -24,7 +24,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.jew.chzhshch"
+        applicationId "com.jew.coree"
         minSdkVersion 15
         targetSdkVersion 27
         versionCode 332

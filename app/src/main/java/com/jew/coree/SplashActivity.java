@@ -1,4 +1,4 @@
-package com.jew.chzhshch;
+package com.jew.coree;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -18,8 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.jew.chzhshch.constants.Constants;
-import com.jew.chzhshch.view.MVPTestActivity;
+import com.jew.coree.constants.Constants;
+import com.jew.coree.view.MVPTestActivity;
 import com.qq.e.ads.splash.SplashAD;
 import com.qq.e.ads.splash.SplashADListener;
 import com.qq.e.comm.util.AdError;
@@ -46,10 +46,10 @@ public class SplashActivity extends AppCompatActivity implements SplashADListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
-        container = (ViewGroup) this.findViewById(R.id.splash_container);
-        skipView = (TextView) findViewById(R.id.skip_view);
-        splashHolder = (ImageView) findViewById(R.id.splash_holder);
+        setContentView(com.jew.coree.R.layout.activity_splash);
+        container = (ViewGroup) this.findViewById(com.jew.coree.R.id.splash_container);
+        skipView = (TextView) findViewById(com.jew.coree.R.id.skip_view);
+        splashHolder = (ImageView) findViewById(com.jew.coree.R.id.splash_holder);
 
         // 如果targetSDKVersion >= 23，就要申请好权限。如果您的App没有适配到Android6.0（即targetSDKVersion < 23），那么只需要在这里直接调用fetchSplashAD接口。
         if (Build.VERSION.SDK_INT >= 23) {

@@ -1,4 +1,4 @@
-package com.jew.chzhshch;
+package com.jew.coree;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
-import com.jew.chzhshch.constants.Constants;
+import com.jew.coree.constants.Constants;
 import com.qq.e.ads.banner.ADSize;
 import com.qq.e.ads.banner.AbstractBannerADListener;
 import com.qq.e.ads.banner.BannerView;
@@ -22,10 +22,10 @@ public class BannerActivity extends AppCompatActivity implements OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_banner);
-        bannerContainer = (ViewGroup) this.findViewById(R.id.bannerContainer);
-        this.findViewById(R.id.refreshBanner).setOnClickListener(this);
-        this.findViewById(R.id.closeBanner).setOnClickListener(this);
+        setContentView(com.jew.coree.R.layout.activity_banner);
+        bannerContainer = (ViewGroup) this.findViewById(com.jew.coree.R.id.bannerContainer);
+        this.findViewById(com.jew.coree.R.id.refreshBanner).setOnClickListener(this);
+        this.findViewById(com.jew.coree.R.id.closeBanner).setOnClickListener(this);
         this.initBanner();
         this.bv.loadAD();
     }
@@ -56,10 +56,10 @@ public class BannerActivity extends AppCompatActivity implements OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.refreshBanner:
+            case com.jew.coree.R.id.refreshBanner:
                 doRefreshBanner();
                 break;
-            case R.id.closeBanner:
+            case com.jew.coree.R.id.closeBanner:
                 doCloseBanner();
                 break;
             default:

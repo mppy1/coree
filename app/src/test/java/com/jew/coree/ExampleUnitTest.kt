@@ -1,4 +1,4 @@
-package com.jew.chzhshch
+package com.jew.coree
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

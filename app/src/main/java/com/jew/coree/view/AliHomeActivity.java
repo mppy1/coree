@@ -1,4 +1,4 @@
-package com.jew.chzhshch.view;
+package com.jew.coree.view;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -7,9 +7,9 @@ import android.view.View;
 
 import com.corelibs.base.BaseActivity;
 import com.gyf.barlibrary.ImmersionBar;
-import com.jew.chzhshch.R;
-import com.jew.chzhshch.presenter.AliHomePresenter;
-import com.jew.chzhshch.view.interfaces.AliHomeView;
+import com.jew.coree.R;
+import com.jew.coree.presenter.AliHomePresenter;
+import com.jew.coree.view.interfaces.AliHomeView;
 
 import butterknife.BindView;
 

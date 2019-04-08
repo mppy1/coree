@@ -4,7 +4,7 @@
         name="gdt_sdk_download_path"
         path="GDTDOWNLOAD" />
     <external-path
-        path="Android/data/com.jew.chzhshch/"
+        path="Android/data/com.jew.coree/"
         name="files_root" />
     <external-path
         path="."

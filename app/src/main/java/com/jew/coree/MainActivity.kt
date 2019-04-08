@@ -1,4 +1,4 @@
-package com.jew.chzhshch
+package com.jew.coree
 
 import android.content.Intent
 import android.os.Bundle

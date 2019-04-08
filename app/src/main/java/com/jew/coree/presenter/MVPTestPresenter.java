@@ -1,7 +1,7 @@
-package com.jew.chzhshch.presenter;
+package com.jew.coree.presenter;
 
 import com.corelibs.base.BasePresenter;
-import com.jew.chzhshch.view.interfaces.MVPTestView;
+import com.jew.coree.view.interfaces.MVPTestView;
 
 public class MVPTestPresenter extends BasePresenter<MVPTestView> {
 

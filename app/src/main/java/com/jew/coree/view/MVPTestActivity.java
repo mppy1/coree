@@ -1,4 +1,4 @@
-package com.jew.chzhshch.view;
+package com.jew.coree.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,11 +8,11 @@ import android.widget.TextView;
 import com.corelibs.base.BaseActivity;
 import com.corelibs.utils.ToastMgr;
 import com.gyf.barlibrary.ImmersionBar;
-import com.jew.chzhshch.BannerActivity;
-import com.jew.chzhshch.InterstitialADActivity;
-import com.jew.chzhshch.R;
-import com.jew.chzhshch.presenter.MVPTestPresenter;
-import com.jew.chzhshch.view.interfaces.MVPTestView;
+import com.jew.coree.BannerActivity;
+import com.jew.coree.InterstitialADActivity;
+import com.jew.coree.R;
+import com.jew.coree.presenter.MVPTestPresenter;
+import com.jew.coree.view.interfaces.MVPTestView;
 import com.liulishuo.filedownloader.BaseDownloadTask;
 import com.liulishuo.filedownloader.FileDownloadListener;
 import com.liulishuo.filedownloader.FileDownloader;

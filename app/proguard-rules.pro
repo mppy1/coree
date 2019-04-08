@@ -127,11 +127,11 @@
 -keep class sun.misc.Unsafe { *; }
 -keep class com.google.gson.stream.** { *; }
 # Application classes that will be serialized/deserialized over Gson 下面替换成自己的实体类
--keep class com.jew.chzhshch.model.** { *; }
--keep class com.jew.chzhshch.remote.** { *; }
--keep class com.jew.chzhshch.widget.** { *; }
--keep class com.jew.chzhshch.ui.view.** { *; }
--keep class com.jew.chzhshch.db.** { *; }
+-keep class com.jew.coree.model.** { *; }
+-keep class com.jew.coree.remote.** { *; }
+-keep class com.jew.coree.widget.** { *; }
+-keep class com.jew.coree.ui.view.** { *; }
+-keep class com.jew.coree.db.** { *; }
 # gson
 
 # okhttp3
@@ -162,7 +162,7 @@
    public <init> (org.json.JSONObject);
 }
 
--keep public class com.jew.chzhshch.R$*{
+-keep public class com.jew.coree.R$*{
 public static final int *;
 }
 
@@ -515,9 +515,9 @@ public static final int *;
 -keep class * extends cn.bmob.v3.BmobObject {
     *;
 }
--keep class com.jew.chzhshch.bmob.FJUser{*;}
--keep class com.jew.chzhshch.bmob.Device{*;}
--keep class com.jew.chzhshch.bmob.FJInstallation{*;}
+-keep class com.jew.coree.bmob.FJUser{*;}
+-keep class com.jew.coree.bmob.Device{*;}
+-keep class com.jew.coree.bmob.FJInstallation{*;}
 
 # keep BmobPush
 -dontwarn  cn.bmob.push.**

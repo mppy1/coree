@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.jew.chzhshch">
+    package="com.jew.coree">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -52,7 +52,7 @@
         <!-- 7.0 的打开文件适配 -->
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.jew.chzhshch.fileprovider"
+            android:authorities="com.jew.coree.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

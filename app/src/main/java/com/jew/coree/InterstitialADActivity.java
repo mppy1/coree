@@ -1,4 +1,4 @@
-package com.jew.chzhshch;
+package com.jew.coree;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-import com.jew.chzhshch.constants.Constants;
+import com.jew.coree.constants.Constants;
 import com.qq.e.ads.interstitial.AbstractInterstitialADListener;
 import com.qq.e.ads.interstitial.InterstitialAD;
 import com.qq.e.comm.util.AdError;
@@ -19,22 +19,22 @@ public class InterstitialADActivity extends AppCompatActivity implements OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_interstitial_ad);
-        this.findViewById(R.id.showIAD).setOnClickListener(this);
-        this.findViewById(R.id.showIADAsPPW).setOnClickListener(this);
-        this.findViewById(R.id.closePPWIAD).setOnClickListener(this);
+        setContentView(com.jew.coree.R.layout.activity_interstitial_ad);
+        this.findViewById(com.jew.coree.R.id.showIAD).setOnClickListener(this);
+        this.findViewById(com.jew.coree.R.id.showIADAsPPW).setOnClickListener(this);
+        this.findViewById(com.jew.coree.R.id.closePPWIAD).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.showIAD:
+            case com.jew.coree.R.id.showIAD:
                 showAD();
                 break;
-            case R.id.showIADAsPPW:
+            case com.jew.coree.R.id.showIADAsPPW:
                 showAsPopup();
                 break;
-            case R.id.closePPWIAD:
+            case com.jew.coree.R.id.closePPWIAD:
                 closeAsPopup();
                 break;
             default:

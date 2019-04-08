@@ -1,4 +1,4 @@
-package com.jew.chzhshch.constants;
+package com.jew.coree.constants;
 
 /**
  * 链接类

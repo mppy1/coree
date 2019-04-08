@@ -1,4 +1,4 @@
-package com.jew.chzhshch;
+package com.jew.coree;
 
 import android.content.Context;
 import android.os.Build;
@@ -11,7 +11,7 @@ import com.corelibs.common.Configuration;
 import com.corelibs.exception.GlobalExceptionHandler;
 import com.corelibs.utils.PreferencesHelper;
 import com.corelibs.utils.ToastMgr;
-import com.jew.chzhshch.constants.Urls;
+import com.jew.coree.constants.Urls;
 import com.liulishuo.filedownloader.FileDownloader;
 import com.liulishuo.filedownloader.connection.FileDownloadUrlConnection;
 import com.liulishuo.filedownloader.util.FileDownloadLog;
@@ -39,7 +39,7 @@ public class App extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         app = this;
-        GlobalExceptionHandler.getInstance().init(this, getResources().getString(R.string.app_name)); //初始化全局异常捕获
+        GlobalExceptionHandler.getInstance().init(this, getResources().getString(com.jew.coree.R.string.app_name)); //初始化全局异常捕获
         ToastMgr.init(getApplicationContext()); //初始化Toast管理器
         Configuration.enableLoggingNetworkParams(); //打开网络请求Log打印，需要在初始化Retrofit接口工厂之前调用
         ApiFactory.getFactory().add(Urls.ROOT_API); //初始化Retrofit接口工厂
