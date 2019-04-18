@@ -7,9 +7,6 @@ buildscript {
         maven { url "https://maven.google.com" }
     }
 
-    dependencies {
-        classpath 'me.tatarka:gradle-retrolambda:3.7.0'
-    }
 }
 
 repositories {
@@ -21,7 +18,7 @@ repositories {
 }
 
 apply plugin: 'com.android.library'
-apply plugin: 'me.tatarka.retrolambda'
+
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
@@ -42,6 +39,13 @@ android {
         }
     }
 
+    android {
+        lintOptions {
+            abortOnError false
+        }
+    }
+
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -55,16 +59,16 @@ dependencies {
     api 'com.android.support:recyclerview-v7:27.1.1'
     api 'com.android.support:design:27.1.1'
 
-    api 'com.github.bumptech.glide:glide:4.7.1'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+    api 'com.github.bumptech.glide:glide:4.8.0'
+    kapt 'com.github.bumptech.glide:compiler:4.8.0'
     api 'jp.wasabeef:glide-transformations:3.3.0'
-    api "com.github.bumptech.glide:okhttp3-integration:4.7.1"
+    api "com.github.bumptech.glide:okhttp3-integration:4.8.0"
 
     api 'com.jakewharton:butterknife:8.8.1'
     kapt 'com.jakewharton:butterknife-compiler:8.8.1'
 
-    api 'io.reactivex.rxjava2:rxjava:2.1.12'
-    api 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    api 'io.reactivex:rxjava:latest.release'
+    api 'io.reactivex:rxandroid:latest.release'
 
     api 'com.trello.rxlifecycle2:rxlifecycle:2.2.1'
     api 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.1'
@@ -75,6 +79,9 @@ dependencies {
     api 'com.squareup.okhttp3:okhttp:3.10.0'
 
     api 'com.liulishuo.filedownloader:library:1.7.5'
+
+    //友盟统计
+    api 'com.umeng.analytics:analytics:latest.integration'
 
     api('com.github.afollestad.material-dialogs:core:0.9.6.0@aar') {
         transitive = true

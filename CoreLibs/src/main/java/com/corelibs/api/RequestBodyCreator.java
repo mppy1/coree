@@ -1,5 +1,7 @@
 package com.corelibs.api;
 
+import android.text.TextUtils;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +12,7 @@ import okhttp3.RequestBody;
 public class RequestBodyCreator {
 
     public static final String TYPE_DEFAULT = "multipart/form-data";
+    public static final String TYPE_JSON = "application/json; charset=utf-8";
     public static final String MULTIPART_HACK = "\"; filename=\"image.png";
 
     public static RequestBody create(File file) {
@@ -27,5 +30,10 @@ public class RequestBodyCreator {
     public static RequestBody create(String string) {
         if (string == null) string = "";
         return RequestBody.create(MediaType.parse(TYPE_DEFAULT), string);
+    }
+
+    public static RequestBody createJson(String string){
+        if (TextUtils.isEmpty(string)) string = "";
+        return RequestBody.create(MediaType.parse(TYPE_JSON), string);
     }
 }

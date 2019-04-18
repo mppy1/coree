@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ import com.corelibs.views.LoadingDialog;
 import com.trello.rxlifecycle2.android.ActivityEvent;
 import com.trello.rxlifecycle2.android.FragmentEvent;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+import com.umeng.analytics.MobclickAgent;
 
 import butterknife.ButterKnife;
 import io.reactivex.ObservableTransformer;
@@ -48,10 +50,20 @@ public abstract class BaseActivity<V extends BaseView, T extends BasePresenter<V
         presenter = createPresenter();
         if (presenter != null) presenter.attachView((V) this);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(Color.TRANSPARENT);
+//            window.setStatusBarColor(Color.parseColor("#e53e42"));
+        }
+
         ButterKnife.bind(this);
         loadingDialog = new LoadingDialog(this);
 
-        setTranslucentStatusBar();
+//        setTranslucentStatusBar();
         init(savedInstanceState);
         if (presenter != null) presenter.onStart();
     }
@@ -126,12 +138,14 @@ public abstract class BaseActivity<V extends BaseView, T extends BasePresenter<V
     @Override
     protected void onResume() {
         super.onResume();
+        MobclickAgent.onResume(this);
         if (presenter != null) presenter.onViewResume();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        MobclickAgent.onPause(this);
         if (presenter != null) presenter.onViewPause();
     }
 

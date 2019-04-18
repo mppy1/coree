@@ -50,10 +50,29 @@ android {
         }
     }
 
-    aaptOptions {
-        cruncherEnabled = false
-        useNewCruncher = false
+    packagingOptions {
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/DEPENDENCIES.txt'
+
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/rxjava.properties'
+
+
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/ASL2.0'
     }
+
+//    aaptOptions {
+//        cruncherEnabled = false
+//        useNewCruncher = false
+//    }
 
     lintOptions {
         abortOnError false
@@ -86,6 +105,11 @@ android {
         extension 'jar'
         from(new File(buildDir, 'libs')) { include '**/*.so' }
         into 'lib/'
+    }
+
+    kapt {
+//        generateStubs = true
+        mapDiagnosticLocations = true
     }
 
     productFlavors {

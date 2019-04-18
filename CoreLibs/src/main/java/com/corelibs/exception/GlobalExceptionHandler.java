@@ -1,5 +1,19 @@
 package com.corelibs.exception;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.os.Build;
+import android.os.Environment;
+import android.util.Log;
+
+import com.corelibs.common.AppManager;
+import com.umeng.analytics.MobclickAgent;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
@@ -13,19 +27,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.os.Build;
-import android.os.Environment;
-import android.util.Log;
-
-import com.corelibs.common.AppManager;
 
 public class GlobalExceptionHandler implements UncaughtExceptionHandler {
 
@@ -61,6 +62,7 @@ public class GlobalExceptionHandler implements UncaughtExceptionHandler {
 	@Override
 	public void uncaughtException(final Thread thread, final Throwable ex) {
 		ex.printStackTrace();
+		MobclickAgent.reportError(mContext, ex);
 		if (!handleException(ex) && mDefaultHandler != null) {
 			mDefaultHandler.uncaughtException(thread, ex);
 		} else {
