@@ -19,18 +19,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:label,android:allowBackup, android:theme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"/>
+        <activity
+            android:name=".SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.splash"
+            android:windowSoftInputMode="adjustPan|stateHidden" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".SplashActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.splash"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
             android:name=".BannerActivity"
             android:screenOrientation="portrait"
