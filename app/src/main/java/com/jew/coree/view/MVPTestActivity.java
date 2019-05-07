@@ -2,26 +2,54 @@ package com.jew.coree.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.corelibs.base.BaseActivity;
+import com.corelibs.utils.ToastMgr;
 import com.gyf.barlibrary.ImmersionBar;
 import com.jew.coree.BannerActivity;
 import com.jew.coree.InterstitialADActivity;
 import com.jew.coree.R;
+import com.jew.coree.adapter.MVPTestAdapter;
 import com.jew.coree.presenter.MVPTestPresenter;
 import com.jew.coree.view.interfaces.MVPTestView;
+
+import java.lang.ref.WeakReference;
 
 import butterknife.BindView;
 
 public class MVPTestActivity extends BaseActivity<MVPTestView, MVPTestPresenter> implements MVPTestView {
 
-    @BindView(R.id.tv_banner)
-    TextView tvBanner;
-    @BindView(R.id.tv_interstitial)
-    TextView tvInterstitial;
-    @BindView(R.id.tv_ali_home)
-    TextView tvAliHome;
+
+    @BindView(R.id.recycler_view)
+    RecyclerView recyclerView;
+    private String[] data = {"阿里首页", "Banner广告", "插屏广告","collapsingToolbar"};
+    private MVPTestAdapter adapter;
+    private CommonHandler commonHandler;
+
+    public static class CommonHandler extends Handler {
+        private final WeakReference<MVPTestActivity> mtarget;
+
+        public CommonHandler(MVPTestActivity activity) {
+            mtarget = new WeakReference<>(activity);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            MVPTestActivity target = mtarget.get();
+            if (target != null) {
+                switch (msg.what) {
+                    case 0:
+                        target.itemEvent(msg.arg1);
+                        break;
+
+                }
+            }
+        }
+    }
 
 
     @Override
@@ -34,21 +62,39 @@ public class MVPTestActivity extends BaseActivity<MVPTestView, MVPTestPresenter>
         ImmersionBar.with(this)
                 .statusBarColor(R.color.colorPrimary)     //状态栏颜色，不写默认透明色
                 .init();
+        commonHandler = new CommonHandler(this);
 
+        adapter = new MVPTestAdapter(getViewContext(), data);
+        adapter.setHandler(commonHandler);
+        LinearLayoutManager manager = new LinearLayoutManager(getViewContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(manager);
+        recyclerView.setAdapter(adapter);
 
-        tvBanner.setOnClickListener(v ->
-                startActivity(new Intent(this, BannerActivity.class))
-        );
-        tvInterstitial.setOnClickListener(v ->
-                startActivity(new Intent(this, InterstitialADActivity.class))
-        );
-        tvAliHome.setOnClickListener(v ->
-                startActivity(new Intent(this, AliHomeActivity.class))
-        );
     }
 
     @Override
     protected MVPTestPresenter createPresenter() {
         return new MVPTestPresenter();
+    }
+
+    public void itemEvent(int position) {
+        switch (position) {
+            case 0:
+                startActivity(new Intent(this, AliHomeActivity.class));
+                break;
+            case 1:
+                startActivity(new Intent(this, BannerActivity.class));
+                break;
+            case 2:
+                startActivity(new Intent(this, InterstitialADActivity.class));
+                break;
+            case 3:
+                startActivity(new Intent(this, CollapsingToolbarActivity.class));
+                break;
+            default:
+                ToastMgr.show("没有事件");
+                break;
+        }
+
     }
 }

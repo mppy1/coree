@@ -1,35 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical">
+    android:fitsSystemWindows="true">
 
-    <TextView
-        android:id="@+id/tv_banner"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:text="banner test!" />
+        android:layout_height="match_parent"
+        android:background="@color/transparent">
 
-    <TextView
-        android:id="@+id/tv_interstitial"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:text="interstitial test!" />
+    </android.support.v7.widget.RecyclerView>
 
-    <TextView
-        android:id="@+id/tv_ali_home"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:text="ali home test!" />
-
-    <TextView
-        android:id="@+id/tv_test"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:text="mvp test!" />
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
