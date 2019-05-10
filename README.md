@@ -1,5 +1,7 @@
 # coree
+https://github.com/mppy1/coree
 MVP内容项目，可以直接用来开发。
+
 原项目：https://github.com/TheseYears/CoreLibs
 
 2018.06更新项目内核，内容没有更新。

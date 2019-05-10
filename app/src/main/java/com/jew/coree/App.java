@@ -39,7 +39,7 @@ public class App extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         app = this;
-        GlobalExceptionHandler.getInstance().init(this, getResources().getString(com.jew.coree.R.string.app_name)); //初始化全局异常捕获
+        GlobalExceptionHandler.getInstance().init(this, getResources().getString(R.string.app_name)); //初始化全局异常捕获
         ToastMgr.init(getApplicationContext()); //初始化Toast管理器
         Configuration.enableLoggingNetworkParams(); //打开网络请求Log打印，需要在初始化Retrofit接口工厂之前调用
         ApiFactory.getFactory().add(Urls.ROOT_API); //初始化Retrofit接口工厂
