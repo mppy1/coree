@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />    <!-- 如果需要精确定位的话请加上此权限 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- 如果需要精确定位的话请加上此权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -19,12 +19,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:label,android:allowBackup, android:theme">
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.splash"
-            android:windowSoftInputMode="adjustPan|stateHidden" >
+            android:windowSoftInputMode="adjustPan|stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -53,8 +53,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-
-        <!-- 7.0 的打开文件适配 -->
+        <activity
+            android:name=".view.BottomBarActivity"
+            android:label="@string/title_activity_bottom_bar"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" /> <!-- 7.0 的打开文件适配 -->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.jew.coree.fileprovider"
@@ -69,7 +73,6 @@
             android:name="com.corelibs.exception.ExceptionDialogActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ExceptionDialogStyle" />
-
         <activity
             android:name="com.corelibs.exception.ExceptionDetailActivity"
             android:screenOrientation="portrait" />
@@ -77,6 +80,7 @@
         <service
             android:name="com.qq.e.comm.DownloadService"
             android:exported="false" />
+
         <activity
             android:name="com.qq.e.ads.ADActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
