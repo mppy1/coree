@@ -5,4 +5,9 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string name="dir_not_exists">目录[%1$s]不存在, 创建目录失败</string>
+    <string name="file_can_not_write">文件[%1$s]不能写</string>
+    <string name="file_not_exists">文件[%1$s]不存在</string>
+    <string name="storage_not_ready">存储卡没有准备好，或者存储卡只可读.</string>
 </resources>

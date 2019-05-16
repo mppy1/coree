@@ -9,8 +9,7 @@
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        >
+        android:layout_height="200dp">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar_layout"
@@ -37,7 +36,7 @@
                 android:layout_height="?attr/actionBarSize"
                 app:contentInsetLeft="0dp"
                 app:contentInsetStart="0dp"
-                app:layout_collapseMode="pin" >        <!--toolbar折叠后固定于顶部 -->
+                app:layout_collapseMode="pin">        <!--toolbar折叠后固定于顶部 -->
 
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.CollapsingToolbarLayout>
@@ -54,6 +53,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <include layout="@layout/item_card" />
+
+            <include layout="@layout/item_card" />
+
+            <include layout="@layout/item_card" />
+
+            <include layout="@layout/item_card" />
+
+            <include layout="@layout/item_card" />
+
+            <include layout="@layout/item_card" />
+
+            <include layout="@layout/item_card" />
+
+            <include layout="@layout/item_card" />
+
+            <include layout="@layout/item_card" />
 
             <include layout="@layout/item_card" />
 

@@ -3,11 +3,13 @@ package com.jew.coree.view;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.jew.coree.R;
+import com.jew.coree.view.fragment.WebViewFragment;
 
 public class BottomBarActivity extends AppCompatActivity {
     private TextView mTextMessage;
@@ -31,6 +33,8 @@ public class BottomBarActivity extends AppCompatActivity {
                 case R.id.navigation_notifications:
                     item.setIcon(R.mipmap.ic_launcher_round);
                     mTextMessage.setText(R.string.title_notifications);
+                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                    ft.replace(R.id.fl_container, new WebViewFragment()).commitAllowingStateLoss();
                     return true;
             }
             return false;

@@ -34,7 +34,7 @@ android {
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         ndk {
-            abiFilters "x86" //"armeabi-v7a", "armeabi", "x86", "mips"
+            abiFilters "armeabi-v7a" //"armeabi-v7a", "armeabi", "x86", "mips"
         }
         javaCompileOptions {
             annotationProcessorOptions {
