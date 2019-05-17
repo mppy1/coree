@@ -54,6 +54,11 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity
+            android:name=".view.CollapsingTabActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
             android:name=".view.BottomBarActivity"
             android:label="@string/title_activity_bottom_bar"
             android:screenOrientation="portrait"

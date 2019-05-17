@@ -1,9 +1,7 @@
 package com.jew.coree.view;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.content.ContentResolverCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
@@ -15,7 +13,6 @@ import com.jew.coree.presenter.CollapsingToolbarPresenter;
 import com.jew.coree.view.interfaces.CollapsingToolbarView;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class CollapsingToolbarActivity extends BaseActivity<CollapsingToolbarView, CollapsingToolbarPresenter> implements CollapsingToolbarView {
 
@@ -38,7 +35,7 @@ public class CollapsingToolbarActivity extends BaseActivity<CollapsingToolbarVie
                 .init();
 
         toolbar.setNavigationIcon(R.drawable.ic_arrow);
-        toolbar.setNavigationOnClickListener(v->finish());
+        toolbar.setNavigationOnClickListener(v -> finish());
         collapsingToolbarLayout.setTitle("测试标题");
         collapsingToolbarLayout.setCollapsedTitleTextColor(ContextCompat.getColor(getViewContext(), R.color.blue_dark));
         collapsingToolbarLayout.setExpandedTitleColor(ContextCompat.getColor(getViewContext(), R.color.white));
