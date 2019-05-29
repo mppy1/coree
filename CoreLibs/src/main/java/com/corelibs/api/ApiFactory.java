@@ -374,6 +374,7 @@ public class ApiFactory {
 //        gsonBuilder.registerTypeAdapterFactory(TypeAdapters.newFactory(int.class, Integer.class, INT));
 //        gsonBuilder.registerTypeAdapterFactory(TypeAdapters.newFactory(Integer.class, Integer.class, INT));
 
+        gsonBuilder.setDateFormat("yyyy-MM-dd HH:mm:ss:sss");
         gsonBuilder.registerTypeAdapter(Timestamp.class, new JsonDeserializer<Timestamp>() {
             @Override
             public Timestamp deserialize(JsonElement json, Type typeOfT,
