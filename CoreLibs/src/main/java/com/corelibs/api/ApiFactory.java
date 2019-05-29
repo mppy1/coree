@@ -11,10 +11,12 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.TypeAdapter;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.internal.ConstructorConstructor;
 import com.google.gson.internal.Excluder;
+import com.google.gson.internal.LazilyParsedNumber;
 import com.google.gson.internal.bind.JsonAdapterAnnotationTypeAdapterFactory;
 import com.google.gson.internal.bind.ReflectiveTypeAdapterFactory;
 import com.google.gson.internal.bind.TypeAdapters;
@@ -25,6 +27,8 @@ import com.google.gson.stream.JsonWriter;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.HashMap;
@@ -148,7 +152,11 @@ public class ApiFactory {
 
             @Override
             public void write(JsonWriter out, Number value) throws IOException {
-                out.value(value);
+                if (value == null) {
+                    out.value(0);
+                } else {
+                    out.value(value);
+                }
             }
         };
 
@@ -170,7 +178,11 @@ public class ApiFactory {
 
             @Override
             public void write(JsonWriter out, Number value) throws IOException {
-                out.value(value);
+                if (value == null) {
+                    out.value(0);
+                } else {
+                    out.value(value);
+                }
             }
         };
 
@@ -192,13 +204,175 @@ public class ApiFactory {
 
             @Override
             public void write(JsonWriter out, Number value) throws IOException {
-                out.value(value);
+                if (value == null) {
+                    out.value(0);
+                } else {
+                    out.value(value);
+                }
             }
         };
 
-        gsonBuilder.registerTypeAdapterFactory(TypeAdapters.newFactory(double.class, Double.class, DOUBLE));
-        gsonBuilder.registerTypeAdapterFactory(TypeAdapters.newFactory(long.class, Long.class, LONG));
-        gsonBuilder.registerTypeAdapterFactory(TypeAdapters.newFactory(int.class, Integer.class, INT));
+        // Gson float类型转换, 避免空字符串解析出错
+        TypeAdapter<Float> FLOAT = new TypeAdapter<Float>() {
+
+            @Override
+            public void write(JsonWriter out, Float value) throws IOException {
+                if (value == null) {
+                    out.value(0);
+                } else {
+                    out.value(value);
+                }
+            }
+
+            @Override
+            public Float read(JsonReader in) throws IOException {
+                if (in.peek() == JsonToken.NULL) {
+                    in.nextNull();
+                    return null;
+                }
+                if (in.peek() == JsonToken.STRING) {
+                    String tmp = in.nextString();
+                    if (TextUtils.isEmpty(tmp)) tmp = "0";
+                    return Float.parseFloat(tmp);
+                }
+                return Float.parseFloat(in.nextString());
+            }
+
+        };
+
+        // Gson string类型转换, 避免空字符串解析出错
+        final TypeAdapter<String> STRING = new TypeAdapter<String>() {
+            @Override
+            public String read(JsonReader in) throws IOException {
+                if (in.peek() == JsonToken.NULL) {
+                    in.nextNull();
+                    return null;
+                }
+                if (in.peek() == JsonToken.STRING) {
+                    String tmp = in.nextString();
+                    if (TextUtils.isEmpty(tmp)) tmp = "";
+                    return tmp;
+                }
+                return in.nextString();
+            }
+
+            @Override
+            public void write(JsonWriter out, String value) throws IOException {
+                if (value == null) {
+                    out.value("");
+                } else {
+                    out.value(value);
+                }
+            }
+        };
+
+        // Gson BigDecimal类型转换, 避免空字符串解析出错
+        TypeAdapter<BigDecimal> BIGDECIMAL = new TypeAdapter<BigDecimal>() {
+
+            @Override
+            public void write(JsonWriter out, BigDecimal value) throws IOException {
+                if (value == null) {
+                    out.value(0);
+                } else {
+                    out.value(value);
+                }
+            }
+
+            @Override
+            public BigDecimal read(JsonReader in) throws IOException {
+                if (in.peek() == JsonToken.NULL) {
+                    in.nextNull();
+                    return null;
+                }
+                try {
+                    String string = in.nextString();
+                    if (!TextUtils.isEmpty(string))
+                        return new BigDecimal(string);
+                    return new BigDecimal(0);
+                } catch (NumberFormatException e) {
+                    throw new JsonSyntaxException(e);
+                }
+
+            }
+
+        };
+
+        // Gson BigInteger类型转换, 避免空字符串解析出错
+        TypeAdapter<BigInteger> BIGINTEGER = new TypeAdapter<BigInteger>() {
+            @Override
+            public void write(JsonWriter out, BigInteger value) throws IOException {
+                if (value == null) {
+                    out.value(0);
+                } else {
+                    out.value(value);
+                }
+            }
+
+            @Override
+            public BigInteger read(JsonReader in) throws IOException {
+                if (in.peek() == JsonToken.NULL) {
+                    in.nextNull();
+                    return null;
+                }
+                try {
+                    String string = in.nextString();
+                    if (!TextUtils.isEmpty(string))
+                        return new BigInteger(string);
+                    return new BigInteger("0");
+                } catch (NumberFormatException e) {
+                    throw new JsonSyntaxException(e);
+                }
+            }
+        };
+
+        // Gson Number类型转换, 避免空字符串解析出错
+        TypeAdapter<Number> NUMBER = new TypeAdapter<Number>() {
+            @Override
+            public void write(JsonWriter out, Number value) throws IOException {
+                if (value == null) {
+                    out.value(0);
+                } else {
+                    out.value(value);
+                }
+            }
+
+            @Override
+            public Number read(JsonReader in) throws IOException {
+                JsonToken jsonToken = in.peek();
+                switch (jsonToken) {
+                    case NULL:
+                        in.nextNull();
+                        return null;
+                    case NUMBER:
+                        return new LazilyParsedNumber(in.nextString());
+                    default:
+                        throw new JsonSyntaxException("Expecting number, got: " + jsonToken);
+                }
+            }
+
+        };
+
+        gsonBuilder.registerTypeAdapter(String.class, STRING);
+        gsonBuilder.registerTypeAdapter(double.class, DOUBLE);
+        gsonBuilder.registerTypeAdapter(Double.class, DOUBLE);
+        gsonBuilder.registerTypeAdapter(Float.class, FLOAT);
+        gsonBuilder.registerTypeAdapter(float.class, INT);
+        gsonBuilder.registerTypeAdapter(long.class, LONG);
+        gsonBuilder.registerTypeAdapter(Long.class, LONG);
+        gsonBuilder.registerTypeAdapter(int.class, INT);
+        gsonBuilder.registerTypeAdapter(Integer.class, INT);
+        gsonBuilder.registerTypeAdapter(Integer.class, INT);
+        gsonBuilder.registerTypeAdapter(BigDecimal.class, BIGDECIMAL);
+        gsonBuilder.registerTypeAdapter(BigInteger.class, BIGINTEGER);
+        gsonBuilder.registerTypeAdapter(Number.class, NUMBER);
+        gsonBuilder.registerTypeAdapter(String.class, new StringConverter());
+
+//        gsonBuilder.registerTypeAdapterFactory(TypeAdapters.newFactory(double.class, Double.class, DOUBLE));
+//        gsonBuilder.registerTypeAdapterFactory(TypeAdapters.newFactory(Double.class, Double.class, DOUBLE));
+//        gsonBuilder.registerTypeAdapterFactory(TypeAdapters.newFactory(long.class, Long.class, LONG));
+//        gsonBuilder.registerTypeAdapterFactory(TypeAdapters.newFactory(Long.class, Long.class, LONG));
+//        gsonBuilder.registerTypeAdapterFactory(TypeAdapters.newFactory(int.class, Integer.class, INT));
+//        gsonBuilder.registerTypeAdapterFactory(TypeAdapters.newFactory(Integer.class, Integer.class, INT));
 
         gsonBuilder.registerTypeAdapter(Timestamp.class, new JsonDeserializer<Timestamp>() {
             @Override
