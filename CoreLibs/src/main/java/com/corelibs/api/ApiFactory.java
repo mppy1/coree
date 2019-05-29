@@ -285,10 +285,10 @@ public class ApiFactory {
                     return null;
                 }
                 try {
-                    String string = in.nextString();
-                    if (!TextUtils.isEmpty(string))
-                        return new BigDecimal(string);
-                    return new BigDecimal(0);
+                    String tmp = in.nextString();
+                    if (TextUtils.isEmpty(tmp))
+                        tmp = "0";
+                    return new BigDecimal(tmp);
                 } catch (NumberFormatException e) {
                     throw new JsonSyntaxException(e);
                 }
@@ -315,10 +315,10 @@ public class ApiFactory {
                     return null;
                 }
                 try {
-                    String string = in.nextString();
-                    if (!TextUtils.isEmpty(string))
-                        return new BigInteger(string);
-                    return new BigInteger("0");
+                    String tmp = in.nextString();
+                    if (!TextUtils.isEmpty(tmp))
+                        tmp = "0";
+                    return new BigInteger(tmp);
                 } catch (NumberFormatException e) {
                     throw new JsonSyntaxException(e);
                 }
