@@ -24,4 +24,5 @@ Step 2
 
 dependencies {
     	implementation 'com.github.mppy1.coree:CoreLibs:v1.0'
+    	implementation 'com.github.mppy1.coree:RxGalleryFinal:v1.0'
 }
