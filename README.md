@@ -13,16 +13,17 @@ https://jitpack.io/#mppy1/coree/v1.0
 
 Step 1
 
-allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-	}
+     allprojects {
+        repositories {
+        ...
+        maven { url 'https://jitpack.io' }
+        }
+     }
 	
 Step 2
 
-dependencies {
-    	implementation 'com.github.mppy1.coree:CoreLibs:v1.0'
-    	implementation 'com.github.mppy1.coree:RxGalleryFinal:v1.0'
-}
+    dependencies {
+	
+        implementation 'com.github.mppy1.coree:CoreLibs:v1.0'
+        implementation 'com.github.mppy1.coree:RxGalleryFinal:v1.0'
+    }
