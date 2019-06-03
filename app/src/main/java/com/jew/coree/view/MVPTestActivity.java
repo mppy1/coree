@@ -26,7 +26,7 @@ public class MVPTestActivity extends BaseActivity<MVPTestView, MVPTestPresenter>
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
-    private String[] data = {"阿里首页", "Banner广告", "插屏广告", "collapsingToolbar", "BottomBar", "CollapsingTab"};
+    private String[] data = {"阿里首页", "Banner广告", "插屏广告", "collapsingToolbar", "BottomBar", "CollapsingTab", "模拟数据请求"};
     private MVPTestAdapter adapter;
     private CommonHandler commonHandler;
 
@@ -96,6 +96,9 @@ public class MVPTestActivity extends BaseActivity<MVPTestView, MVPTestPresenter>
                 break;
             case 5:
                 startActivity(new Intent(this, CollapsingTabActivity.class));
+                break;
+            case 6:
+                presenter.login("123456789", "3344");
                 break;
             default:
                 ToastMgr.show("没有事件");
