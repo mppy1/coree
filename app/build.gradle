@@ -16,7 +16,7 @@ configurations.all {
 
 android {
     compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    buildToolsVersion '28.0.3'
 
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
@@ -129,15 +129,7 @@ android {
 
     applicationVariants.all { variant ->
         variant.outputs.all { output ->
-            def outputFile = output.outputFile
-
-            if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                // 输出apk名称为：great_v[版本号]_[时间]_[渠道].apk
-                def fileName = "coree_v${defaultConfig.versionName}_${releaseTime()}_${productFlavors[0].name}.apk"
-                outputFileName = fileName
-//                output.outputFile = new File(outputFile.parent, fileName)
-
-            }
+            outputFileName = "coree_v${variant.versionName}_${releaseTime()}_${productFlavors[0].name}.apk"
         }
     }
 }
