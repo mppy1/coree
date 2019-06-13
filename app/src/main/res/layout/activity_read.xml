@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:orientation="vertical">
+
+    <com.jew.coree.treader.view.PageWidget
+        android:id="@+id/bookpage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:id="@+id/topMenuLL"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:layout_alignParentTop="true"
+        android:alpha="0.99"
+        android:background="@color/body_black"
+        android:clickable="true"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <ImageView
+            android:id="@+id/book_back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="@dimen/normal_margin"
+            android:paddingRight="@dimen/large_margin"
+            android:src="@drawable/btn_back_white" />
+
+        <TextView
+            android:id="@+id/textview_title_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@+id/book_voice_btn"
+            android:layout_toRightOf="@+id/book_back_btn"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/default_book_name"
+            android:textColor="@android:color/white"
+            android:textSize="17sp"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/book_voice_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_toLeftOf="@+id/book_download_btn"
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp"
+            android:src="@drawable/txfj_yinpin" />
+
+        <ImageView
+            android:id="@+id/book_download_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/book_more_btn"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:src="@drawable/txfj_xiazai" />
+
+        <ImageView
+            android:id="@+id/book_more_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="20dp"
+            android:src="@drawable/txfj_gengduo" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -63,7 +63,15 @@
             android:label="@string/title_activity_bottom_bar"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:windowSoftInputMode="adjustPan|stateHidden" /> <!-- 7.0 的打开文件适配 -->
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".view.ReadActivity"
+            android:label="@string/title_activity_bottom_bar"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <!-- 7.0 的打开文件适配 -->
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.jew.coree.fileprovider"

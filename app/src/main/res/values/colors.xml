@@ -8,4 +8,19 @@
     <color name="white">#ffffff</color>
     <color name="blue_dark">#1983d1</color>
     <color name="blue_black">#1673b8</color>
+
+    <color name="read_bg_default">#CEC29C</color>
+    <color name="read_bg_1">#CCEBCC</color>
+    <color name="read_bg_2">#37342F</color>
+    <color name="read_bg_3">#D1CEC5</color>
+    <color name="read_bg_4">#001C27</color>
+
+    <color name="read_font_default">#2C2C2C</color>
+    <color name="read_font_1">#2F332D</color>
+    <color name="read_font_2">#92918C</color>
+    <color name="read_font_3">#383429</color>
+    <color name="read_font_4">#627176</color>
+
+    <!-- 80%的透明度黑色 -->
+    <color name="body_black">#c8000000</color>
 </resources>

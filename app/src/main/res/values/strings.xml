@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">coree</string>
+    <string name="app_confirm">确定</string>
+    <string name="app_cancel">取消</string>
     <string name="click_to_skip">点击跳过</string>
     <string name="title_activity_bottom_bar">BottomBarActivity</string>
     <string name="title_home">Home</string>
@@ -10,4 +12,53 @@
     <string name="file_can_not_write">文件[%1$s]不能写</string>
     <string name="file_not_exists">文件[%1$s]不存在</string>
     <string name="storage_not_ready">存储卡没有准备好，或者存储卡只可读.</string>
+
+    <!-- 经文模块 -->
+    <string name="txfj_reader_setting">设置</string>
+    <string name="txfj_reader_process">进度</string>
+    <string name="txfj_reader_question">问师父</string>
+    <string name="txfj_reader_exit_voice">退出朗读模式</string>
+    <string name="txfj_voice_fast">快速</string>
+    <string name="txfj_foyue_list">播放列表</string>
+    <string name="txfj_voice_slow">慢速</string>
+    <string name="txfj_subscribe">订阅更新</string>
+    <string name="txfj_subscribed">已订阅</string>
+    <string name="txfj_downloading">正在下载中...</string>
+    <string name="txfj_downloaded_finish">下载完成</string>
+    <string name="txfj_downloaded">你已下载过</string>
+    <string name="txfj_history">历史记录</string>
+
+    <string name="txfj_look_video">视频</string>
+    <string name="txfj_look_story">佛教故事</string>
+    <string name="txfj_look_pic">图集</string>
+    <string name="txfj_look_changshi">佛教常识</string>
+    <string name="txfj_listen_music">佛教音乐</string>
+    <string name="txfj_listen_story">佛教故事</string>
+    <string name="txfj_listen_kaishi">高僧开示</string>
+    <string name="txfj_music_list">列表循环</string>
+    <string name="txfj_music_sign">单曲循环</string>
+    <string name="txfj_music_random">随机播放</string>
+    <string name="txfj_insert_subscribe">订阅成功</string>
+    <string name="txfj_delete_subscribe">取消订阅</string>
+
+
+    <string name="txfj_voice_male">宏亮男声</string>
+    <string name="txfj_voice_female">甜美女声</string>
+    <string name="txfj_album_follow">已被%d人关注</string>
+    <string name="txfj_album_selection">选集   (%d)</string>
+    <string name="txfj_album_selection_number">选集</string>
+    <string name="txfj_album_selection_count">共%d集</string>
+    <string name="txfj_album_order">排序</string>
+    <string name="txfj_album_only_one">专辑只剩一个数据，请选择你喜欢的专辑哦。</string>
+    <string name="txfj_toast_history_empty">历史记录为空</string>
+    <string name="txfj_clear_history">是否要清空历史记录？</string>
+
+    <string name="action_night_mode">夜间模式</string>
+    <string name="action_day_mode">日间模式</string>
+
+
+    <string name="read_setting_night">夜间</string>
+    <string name="read_setting_day">日间</string>
+
+    <string name="default_book_name">平凡的世界</string>
 </resources>

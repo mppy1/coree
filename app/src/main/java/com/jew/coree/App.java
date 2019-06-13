@@ -12,9 +12,13 @@ import com.corelibs.exception.GlobalExceptionHandler;
 import com.corelibs.utils.PreferencesHelper;
 import com.corelibs.utils.ToastMgr;
 import com.jew.coree.constants.Urls;
+import com.jew.coree.treader.Config;
+import com.jew.coree.treader.util.PageFactory;
 import com.liulishuo.filedownloader.FileDownloader;
 import com.liulishuo.filedownloader.connection.FileDownloadUrlConnection;
 import com.liulishuo.filedownloader.util.FileDownloadLog;
+
+import org.litepal.LitePalApplication;
 
 import java.net.Proxy;
 
@@ -39,6 +43,10 @@ public class App extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         app = this;
+        // 创建数据库
+        LitePalApplication.initialize(this);
+        Config.createConfig(this);
+        PageFactory.createPageFactory(this);
         GlobalExceptionHandler.getInstance().init(this, getResources().getString(R.string.app_name)); //初始化全局异常捕获
         ToastMgr.init(getApplicationContext()); //初始化Toast管理器
         Configuration.enableLoggingNetworkParams(); //打开网络请求Log打印，需要在初始化Retrofit接口工厂之前调用
