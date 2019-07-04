@@ -11,4 +11,5 @@ public class Constants {
     public static final String NativeExpressSupportVideoPosID = "2000629911207832"; //支持视频模版样式的广告位
     public static final String CONTENT_AD_POS_ID = "6030826684185381";
 
+    public static final String MEDIA_TYPE = "application/json; charset=utf-8";
 }
