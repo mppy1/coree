@@ -1,9 +1,9 @@
 package com.corelibs.exception;
 
-import android.app.Activity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.corelibs.R;
 import com.corelibs.utils.ToastMgr;
 
-public class ExceptionDetailActivity extends Activity {
+public class ExceptionDetailActivity extends AppCompatActivity {
 	
 	private TextView tv_detail, tv_copy, tv_close;
 	private String outputInfo;
@@ -20,7 +20,8 @@ public class ExceptionDetailActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.act_exception_detail);
-		
+		getSupportActionBar().hide();
+
 		outputInfo = getIntent().getStringExtra(ExceptionDialogActivity.OUTPUT_INFO);
 		
 		tv_detail = (TextView) findViewById(R.id.tv_detail);

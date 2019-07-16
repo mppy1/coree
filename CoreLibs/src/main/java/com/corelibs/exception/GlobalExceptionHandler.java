@@ -54,7 +54,7 @@ public class GlobalExceptionHandler implements UncaughtExceptionHandler {
 	
 	public void init(Context context) {
 		mContext = context;
-		crash_file_dir_path = mContext.getExternalCacheDir() + "/logs/";
+		crash_file_dir_path = Environment.getExternalStorageDirectory() + "/logs/";
 		mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
 		Thread.setDefaultUncaughtExceptionHandler(this);
 	}

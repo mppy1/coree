@@ -1,8 +1,8 @@
 package com.corelibs.exception;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.corelibs.R;
 
-public class ExceptionDialogActivity extends Activity {
+public class ExceptionDialogActivity extends AppCompatActivity {
 	
 	public static final String APP_NAME = "APP_NAME";
 	public static final String OUTPUT_INFO = "OUTPUT_INFO";
@@ -22,7 +22,7 @@ public class ExceptionDialogActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.act_exception_dialog);
-		
+		getSupportActionBar().hide();
 		tv_msg = (TextView) findViewById(R.id.tv_msg);
 		btn_nav = (Button) findViewById(R.id.btn_nav);
 		btn_pos = (Button) findViewById(R.id.btn_pos);
