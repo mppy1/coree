@@ -9,6 +9,19 @@
     <color name="blue_dark">#1983d1</color>
     <color name="blue_black">#1673b8</color>
 
+    <!-- Reader Color -->
+    <color name="reader_default_bg_toolbar">#CC000000</color>
+    <color name="reader_default_bg_yellow">#CFBEB6</color>
+    <color name="reader_default_bg_black">#090C13</color>
+    <color name="reader_default_text_light">#32414E</color>
+    <color name="reader_default_text_dark">#444444</color>
+    <color name="read_background">#FAF9DE</color>
+    <color name="read_background_paperYellow">#D4C5A3</color>
+    <color name="read_textColor">#3B3A38</color>
+
+    <color name="read_dialog_bg">#2C2C2C</color>
+    <color name="read_dialog_button_select">#E25754</color>
+
     <color name="read_bg_default">#CEC29C</color>
     <color name="read_bg_1">#CCEBCC</color>
     <color name="read_bg_2">#37342F</color>

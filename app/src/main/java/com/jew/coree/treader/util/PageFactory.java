@@ -282,7 +282,6 @@ public class PageFactory {
                 drawTextIndex ++;
 
                 int range = Arrays.binarySearch(indexRangeOfVoice, drawTextIndex);
-                LogUtils.e("wym === 绘制范围: " + range);
                 if (range > 0 || (range < -1 && range > -indexRangeOfVoice.length)) {        // 这些文字在语音播放时候需要显示背景
 
                     Paint voicePaint = new Paint();
@@ -304,7 +303,7 @@ public class PageFactory {
         float fPercent = (float) (currentPage.getBegin() * 1.0 / mBookUtil.getBookLen());//进度
         currentProgress = fPercent;
         if (mPageEvent != null) {
-            mPageEvent.changeProgress(fPercent);
+            mPageEvent.changeProgress(currentPage.getIndex() + 1);
         }
         String strPage = (currentPage.getIndex() + 1) + "/" + (getPageCount() + 1);
         int nPercentWidth = (int) mBatterryPaint.measureText("999.9%") + 1;  //Paint.measureText直接返回參數字串所佔用的寬度

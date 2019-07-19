@@ -2,13 +2,13 @@ package com.jew.coree.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.corelibs.base.BaseActivity;
+import com.corelibs.utils.LogUtils;
 import com.corelibs.utils.ToastMgr;
 import com.gyf.barlibrary.ImmersionBar;
 import com.jew.coree.BannerActivity;
@@ -17,9 +17,15 @@ import com.jew.coree.R;
 import com.jew.coree.adapter.MVPTestAdapter;
 import com.jew.coree.presenter.MVPTestPresenter;
 import com.jew.coree.treader.db.BookList;
+import com.jew.coree.utils.FileUtil;
 import com.jew.coree.view.interfaces.MVPTestView;
+import com.liulishuo.filedownloader.BaseDownloadTask;
+import com.liulishuo.filedownloader.FileDownloadListener;
+import com.liulishuo.filedownloader.FileDownloader;
 
 import java.lang.ref.WeakReference;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import butterknife.BindView;
 
@@ -112,16 +118,53 @@ public class MVPTestActivity extends BaseActivity<MVPTestView, MVPTestPresenter>
 
     }
 
+    String path = FileUtil.getDownloadDir() + "123456789.txt";
     private void read(){
-        String path = Environment.getExternalStorageDirectory() + "/yifoli/fojing/";
-        BookList bl = BookList.where("inforid = ?", String.valueOf(25171)).findFirst(BookList.class);
-        if (bl == null) {
-            bl = new BookList();
-            bl.setBookpath(path + "/25171.txt");
-            bl.setBookname("金刚经");
-            bl.setInforid(25171);
-            bl.save();
-        }
-        ReadActivity.openBook(bl, getViewContext());
+        ExecutorService service = Executors.newCachedThreadPool();
+        service.execute(()->{
+            FileDownloader.getImpl()
+                    .create("http://www.csxingfutemple.org/xfcd/BAOKU/01-ahan/01/0001.txt")
+                    .setPath(path)
+                    .setListener(new FileDownloadListener() {
+                        @Override
+                        protected void pending(BaseDownloadTask task, int soFarBytes, int totalBytes) {
+
+                        }
+
+                        @Override
+                        protected void progress(BaseDownloadTask task, int soFarBytes, int totalBytes) {
+                            LogUtils.e("totalBytes " + totalBytes + " soFarBytes " + soFarBytes);
+                        }
+
+                        @Override
+                        protected void completed(BaseDownloadTask task) {
+                            BookList bl = BookList.where("inforid = ?", String.valueOf(123456789)).findFirst(BookList.class);
+                            if (bl == null) {
+                                bl = new BookList();
+                                bl.setBookpath(path);
+                                bl.setBookname("金刚经");
+                                bl.setInforid(123456789);
+                                bl.save();
+                            }
+                            ReadActivity.openBook(bl, getViewContext());
+                        }
+
+                        @Override
+                        protected void paused(BaseDownloadTask task, int soFarBytes, int totalBytes) {
+                            LogUtils.e("下载暂停：totalBytes" + totalBytes + " soFarBytes " + soFarBytes);
+                        }
+
+                        @Override
+                        protected void error(BaseDownloadTask task, Throwable e) {
+                            LogUtils.e("下载错误：" + e.getMessage());
+                        }
+
+                        @Override
+                        protected void warn(BaseDownloadTask task) {
+
+                        }
+                    }).start();
+        });
+
     }
 }
