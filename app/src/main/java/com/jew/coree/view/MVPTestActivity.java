@@ -118,12 +118,12 @@ public class MVPTestActivity extends BaseActivity<MVPTestView, MVPTestPresenter>
 
     }
 
-    String path = FileUtil.getDownloadDir() + "123456789.txt";
+    String path = FileUtil.getDownloadDir() + "1234567890.txt";
     private void read(){
         ExecutorService service = Executors.newCachedThreadPool();
         service.execute(()->{
             FileDownloader.getImpl()
-                    .create("http://www.csxingfutemple.org/xfcd/BAOKU/01-ahan/01/0001.txt")
+                    .create("http://video.1foli.com/FluGklF2SALWgoHUE45WayCR_Tw9")
                     .setPath(path)
                     .setListener(new FileDownloadListener() {
                         @Override
@@ -138,12 +138,12 @@ public class MVPTestActivity extends BaseActivity<MVPTestView, MVPTestPresenter>
 
                         @Override
                         protected void completed(BaseDownloadTask task) {
-                            BookList bl = BookList.where("inforid = ?", String.valueOf(123456789)).findFirst(BookList.class);
+                            BookList bl = BookList.where("inforid = ?", String.valueOf(1234567890)).findFirst(BookList.class);
                             if (bl == null) {
                                 bl = new BookList();
                                 bl.setBookpath(path);
                                 bl.setBookname("金刚经");
-                                bl.setInforid(123456789);
+                                bl.setInforid(1234567890);
                                 bl.save();
                             }
                             ReadActivity.openBook(bl, getViewContext());

@@ -22,7 +22,6 @@ public class ExceptionDialogActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.act_exception_dialog);
-		getSupportActionBar().hide();
 		tv_msg = (TextView) findViewById(R.id.tv_msg);
 		btn_nav = (Button) findViewById(R.id.btn_nav);
 		btn_pos = (Button) findViewById(R.id.btn_pos);

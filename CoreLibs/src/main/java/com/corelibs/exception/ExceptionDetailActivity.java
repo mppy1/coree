@@ -20,7 +20,6 @@ public class ExceptionDetailActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.act_exception_detail);
-		getSupportActionBar().hide();
 
 		outputInfo = getIntent().getStringExtra(ExceptionDialogActivity.OUTPUT_INFO);
 		
