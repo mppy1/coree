@@ -1,11 +1,12 @@
 package com.corelibs.base;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
@@ -156,17 +157,25 @@ public abstract class BaseActivity<V extends BaseView, T extends BasePresenter<V
     }
 
     @Override
-    public Context getViewContext() {
+    public Activity getViewContext() {
         return this;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     public void showLoading() {
+        if (getViewContext() == null || getViewContext().isDestroyed() || getViewContext().isFinishing()) {
+            return;
+        }
         if (loadingDialog != null) loadingDialog.show();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     @Override
     public void hideLoading() {
+        if (getViewContext() == null || getViewContext().isDestroyed() || getViewContext().isFinishing()) {
+            return;
+        }
         if (loadingDialog != null) loadingDialog.dismiss();
     }
 
