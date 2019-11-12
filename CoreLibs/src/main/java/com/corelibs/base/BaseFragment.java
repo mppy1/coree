@@ -1,5 +1,6 @@
 package com.corelibs.base;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -150,7 +151,7 @@ public abstract class BaseFragment<V extends BaseView, T extends BasePresenter<V
     public void showEmptyHint() {}
 
     @Override
-    public Context getViewContext() {
+    public Activity getViewContext() {
         return getActivity();
     }
 
