@@ -551,3 +551,6 @@ public static final int *;
  #Lambda
  -dontwarn java.lang.invoke.*
  -dontwarn **$$Lambda$*
+
+
+ -keep class org.spongycastle.**
